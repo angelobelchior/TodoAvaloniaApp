@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+    <None Remove="Assets\Icons\All.svg" />
+    <None Remove="Assets\Icons\Completed.svg" />
+    <None Remove="Assets\Icons\Important.svg" />
+    <None Remove="Assets\Icons\Planned.svg" />
+    <None Remove="Assets\Icons\Tasks.svg" />
+    <None Remove="Assets\Icons\Today.svg" />
+    <TrimmerRootDescriptor Include="Roots.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="$(AvaloniaVersion)" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="$(AvaloniaVersion)" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+    <PackageReference Include="LiteDB" Version="5.0.12" />
+    <PackageReference Include="XamlNameReferenceGenerator" Version="1.4.2" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,127 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="TodoAvaloniaApp.Views.MainView"
+			 xmlns:converter="using:TodoAvaloniaApp.Views.Converters"
+             Foreground="White"
+             Background="#171C2C">
+
+	<UserControl.Resources>
+		<converter:IsDoneConverter x:Key="IsDoneConverter" />
+		<converter:FilterTypeToIconConverter x:Key="FilterTypeToIconConverter" />
+		<converter:FilterTypeToIconColorConverter x:Key="FilterTypeToIconColorConverter" />
+	</UserControl.Resources>
+
+	<UserControl.Styles>
+		<Style Selector="PathIcon.PathIconStyle">
+			<Setter Property="VerticalAlignment" Value="Center" />
+			<Setter Property="Foreground" Value="{Binding FilterType, Converter={StaticResource FilterTypeToIconColorConverter}}" />
+			<Setter Property="Data" Value="{Binding FilterType, Converter={StaticResource FilterTypeToIconConverter}}" />
+		</Style>
+
+	</UserControl.Styles>
+
+	<SplitView IsPaneOpen="True"
+           DisplayMode="Inline"
+           OpenPaneLength="296">
+
+		<SplitView.Pane>
+			<StackPanel Margin="20" Spacing="10">
+
+				<TextBox x:Name="search" Watermark="Search..." />
+
+				<ListBox x:Name="filtersList"
+						 CornerRadius="5"
+						 SelectedIndex="0"
+						 Items="{Binding Filters}">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Grid ColumnDefinitions="20,*,20">
+								<PathIcon Grid.Column="0" Margin="6" Width="20" Height="20" VerticalAlignment="Center"
+										  Foreground="{Binding FilterType, Converter={StaticResource FilterTypeToIconColorConverter}}"
+										  Data="{Binding FilterType, Converter={StaticResource FilterTypeToIconConverter}}"/>
+
+								<TextBlock Grid.Column="1" Margin="5" VerticalAlignment="Center" Text="{Binding FilterType, Mode=OneWay}" />
+
+								<Border Grid.Column="2" VerticalAlignment="Center"
+										IsVisible="{Binding !!Count, Mode=OneWay}"
+										Height="25" Width="25"
+									    CornerRadius="25"
+										Background="#212121">
+									<TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+											   FontSize="8"
+											   Foreground="White"
+											   Text="{Binding Count, Mode=OneWay}" />
+								</Border>
+
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+
+			</StackPanel>
+
+		</SplitView.Pane>
+
+		<Grid Margin="40">
+			<Grid RowDefinitions="40,*,60">
+
+				<Grid Grid.Row="0" ColumnDefinitions="40, *">
+					<PathIcon Grid.Column="0"
+							  Width="40"
+							  Height="40"
+							  VerticalAlignment="Center"
+							  Foreground="{Binding #filtersList.SelectedItem.FilterType, Converter={StaticResource FilterTypeToIconColorConverter}}"
+							  Data="{Binding #filtersList.SelectedItem.FilterType, Converter={StaticResource FilterTypeToIconConverter}}"/>
+
+					<TextBlock Grid.Column="1"
+  							   Margin="10,0,0,0"
+							   VerticalAlignment="Center"
+							   FontSize="36"
+							   Text="{Binding #filtersList.SelectedItem.FilterType, Mode=OneWay}" />
+				</Grid>
+
+				<ListBox x:Name="tasks" Grid.Row="1" Margin="0,20,0,0" Items="{Binding ToDos}" Background="Transparent">
+					<ListBox.ItemTemplate>
+						<DataTemplate>
+							<Grid ColumnDefinitions="30,*,30" RowDefinitions="30,15">
+								<CheckBox Grid.Column="0" CornerRadius="10" Height="30" IsChecked="{Binding IsDone}" />
+								<TextBlock Grid.Column="1"
+										   Text="{Binding Title}"
+										   TextDecorations="{Binding IsDone, Converter={StaticResource IsDoneConverter}}"
+										   FontSize="20" />
+
+								<TextBlock Grid.Column="1" Grid.Row="1"
+										   TextDecorations="{Binding IsDone, Converter={StaticResource IsDoneConverter}}"
+										   Text="{Binding StartedAt}" FontSize="10" />
+							</Grid>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
+				</ListBox>
+
+				<Grid Grid.Row="2"
+					  Margin="0,10,0,0"
+					  ColumnDefinitions="30, *">
+
+					<CheckBox x:Name="newToDoIsDone"
+							  Grid.Column="0"
+							  CornerRadius="10"
+							  Height="30"
+							  IsChecked="{Binding NewToDoIsDone}" />
+
+					<TextBox x:Name="newToDoTitle"
+						     Grid.Column="1" Margin="5"
+							 BorderThickness="1"
+							 FontSize="25"
+		                     Background="Transparent"
+							 Text="{Binding NewToDoTitle}"
+		                     Watermark="Add a new task..." />
+				</Grid>
+
+			</Grid>
+		</Grid>
+	</SplitView>
+
+</UserControl>
