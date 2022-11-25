@@ -2,17 +2,17 @@
 
 **É importante destacar que esse repositório não tem nenhuma pretenção em ser referência para nada, apenas serve como parte de aprendizado e diversão.**
 
-Nesse repositório contém uma aplicação de cotrole de tarefas feita utilizando o [Avalonia UI](https://avaloniaui.net/).
+Nesse repositório contém uma aplicação de controle de tarefas feita utilizando o [Avalonia UI](https://avaloniaui.net/).
 
-Eu dediquei menos de duas horas pra fazer essa aplicação, muito pelo fato do Avalonia UI ser muito simples e prático de se trabalhar. Sinceramente me surpreendeu muito esse framework, e eu recomendo muito que vocês dêem uma olhada nele.
+Eu fiz um vídeo mostrando uma introdução ao Avalonia UI, você pode conferir [aqui](https://www.youtube.com/watch?v=s4yvwXqaSww&ab_channel=AngeloBelchior).
+
+Eu dediquei menos de duas horas pra fazer essa aplicação, muito pelo fato do Avalonia UI ser muito simples e prático de se trabalhar. Sinceramente me surpreendeu muito esse framework e eu recomendo muito que vocês dêem uma olhada nele.
 
 Além do Avalonia UI, é utilizado o [MVVM Community Toolkit](https://learn.microsoft.com/en-us/windows/communitytoolkit/mvvm/introduction).
 
 Sinceramente eu não consigo imaginar uma aplicação que se propõe a utilizar os conceitos de MVVM sem utilizar essa biblioteca. Ela beira o estado da arte.
 
 Como banco de dados é utilizado o [LiteDb](https://www.litedb.org/). Poderia ser utilizado o SQLite, mas o LiteDb foi escolhido por ser um banco de dados leve, simples de utilizar e principalmente por ser um projeto brasileiro. Conheça e apoie esse projeto!
-
-Eu fiz um vídeo mostrando uma introdução ao Avalonia UI, você pode conferir [aqui](https://www.youtube.com/watch?v=s4yvwXqaSww&ab_channel=AngeloBelchior).
 
 Versão WASM (WEB): [https://angelobelchior.github.io/TodoAvaloniaApp/](https://angelobelchior.github.io/TodoAvaloniaApp/)
 
@@ -24,7 +24,7 @@ Versão Linux rodando via WSL:
 
 ## Bugs e melhorias
 
-[ ] Por algum motivo na versão WASM os dados que são inseridos não estão sendo salvos. Não sei se é um bug do WASM, do LiteDb no WASM ou cagada minha. **Voto na última opção**.
+[ ] Por algum motivo na versão WASM os dados que são inseridos no LiteDb não estão sendo salvos (O banco recebe os dados, insere-os, mas ao reiniciar a aplicação o dado não está lá). Não sei se é um bug do WASM, do LiteDb no WASM ou cagada minha. **Voto na última opção**.
 
 [ ] Ao iniciar a tela, o filtro Today é ativado, mas os dados não estão sendo carregados na lista de tarefas. (Isso é fácil de resolver... só não tive tempo).
 
