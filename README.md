@@ -26,8 +26,6 @@ Versão Linux rodando via WSL:
 
 [ ] Por algum motivo na versão WASM os dados que são inseridos no LiteDb não estão sendo salvos (O banco recebe os dados, insere-os, mas ao reiniciar a aplicação o dado não está lá). Não sei se é um bug do WASM, do LiteDb no WASM ou cagada minha. **Voto na última opção**.
 
-[ ] Ao iniciar a tela, o filtro Today é ativado, mas os dados não estão sendo carregados na lista de tarefas. (Isso é fácil de resolver... só não tive tempo).
-
 [ ] Não foi implementada a funcionalidade do busca (campo search).
 
 [ ] Ao marcar uma task criada como finalizada, não existe evento para propagar a informação e por consequência atualizar os valores dos filtros.

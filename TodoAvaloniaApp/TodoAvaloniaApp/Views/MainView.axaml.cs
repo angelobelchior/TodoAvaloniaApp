@@ -44,4 +44,13 @@ public partial class MainView : UserControl
             }
         };
     }
+
+    protected override void OnLoaded()
+    {
+        base.OnLoaded();
+
+        var filter = (filtersList.SelectedItem as FilterItem)!;
+        var viewModel = (DataContext as MainViewModel)!;
+        viewModel.FilterToDosCommand.Execute(filter.FilterType);
+    }
 }
